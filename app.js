@@ -23,11 +23,11 @@ app.get("*", (req, res) => {
     return res.render("404", {
         path:req.originalUrl
     });
-})
+});
 
 app.listen(3333, (err) => {
     if(err) throw err;
     else{
         console.log("app running");
     }
-})
+});
