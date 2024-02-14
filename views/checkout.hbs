@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>teddit | Checkout</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+
+      <a href="index" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="/#our-vision">Vision</a></li>
+          <li><a class="nav-link scrollto" href="/#about-us">About Us</a></li>
+          <li><a class="nav-link scrollto" href="/#pricing">Services</a></li>
+          <li><a class="nav-link scrollto" href="/#faq">FAQ</a></li>
+          <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="https://reselling.teddit.com">Login</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Checkout</li>
+        </ol>
+        <h2>Checkout</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" style="margin:auto;">
+            <div class="portfolio-info">
+              <h3>Order Information</h3>
+              <ul>
+                <li><strong>Device</strong>: {{model}}</li>
+                <li><strong>Serial Number</strong>: {{serial}}</li>
+                <li><strong>Service</strong>: {{service}}</li>
+                <li><strong>Order ID</strong>: {{orderID}}</li>
+                <li id="price"><strong>Total Price</strong>: {{price}} USD</li>
+              </ul>
+
+              <h3></h3>
+              
+              <p class="agreement-text">If you have a promo-code enter it below</p> 
+              <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <input type="text" name="promo" class="form-control" style="text-transform:uppercase;" placeholder="Promo Code" id="promo" maxlength="20" minlength="5">
+                &nbsp;
+                <label for="promo" class="agreement-text" id="apply-btn" onclick="ApplyPromo('promo', 'apply-btn')"><a href="javascript:void(0)">Apply</a></label>
+              </div>
+              
+              <h3></h3>
+
+              <div class="loader" style="display: none;"></div>
+              <form action="#" method="post">
+              <div class="checkbox-wrapper-13" style="margin: auto;">
+                <label for="agreementCb" class="agreement-text"><input type="checkbox" name="agreementBox" id="agreementCb" class="sc-gJwTLC ikxBAC" required=""> I have reviewed and agreed to the <a href="/privacy">Privacy Policy</a>, <a href="/terms-of-service">Terms of Service</a>, and <a href="/refund-policy">Refund Policy</a>.</label>
+              </div>
+              
+              <br>
+              <button type="submit" class="form-control checkout-btn" id="buybtn">Pay Now <i class="bx bx-cart-alt"></i></button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Can't pay with Card?</h4>
+            <p>In addition to our existing payment options, we now accept Binance USDT and bank transfer.</p>
+            <a class="getstarted scrollto" href="https://t.me/tedddby">Message us on Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <a href="index" class="logo me-auto"><img src="assets/img/logo.png" alt="" style="width: 125px;"></a><br><br>
+            <p>
+              Serdar, Arızlı Cd. No:7 <br>
+              41100 İzmit/Kocaeli<br>
+              Turkey <br><br>
+              <strong>Phone:</strong> +1 567-268-8320<br>
+              <strong>Email:</strong> info@teddit.pro<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/#about-us">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/#pricing">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/#our-vision">Vision</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/privacy">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="/terms-of-service">Terms of Service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/refund-policy">Refund Policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#contact">Become a partner</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://reselling.teddit.com">Become a reseller</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://storebox.store">Our Online Store</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>Engage with us on social media for real-time updates and insights.</p>
+            <div class="social-links mt-3">
+              <a href="https://x.com/tedditpro" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://t.me/tedddbyActivator" class="facebook"><i class="bx bxl-telegram"></i></a>
+              <a href="https://instagram.com/tedddby" class="instagram"><i class="bx bxl-instagram"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>teddit</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/realdeal/checkout.js"></script>
+</body>
+
+</html>
