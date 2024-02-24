@@ -28,7 +28,7 @@ const promisify = f => (...args) => new Promise((a,b)=>f(...args, (err, res) => 
 
 const setPrice = (service, model, callback) => {
 
-  fs.writeFileSync('./log_ted2.txt', model.toString());
+  fs.writeFileSync('./log_ted2.txt', model);
 
   db.query("SELECT * FROM "+service.replace(/ /g,"_")+" WHERE model = ?", [model.toUpperCase()], (error, result) => {
     if(error){
@@ -36,7 +36,7 @@ const setPrice = (service, model, callback) => {
     }else{
       if(result && result != ""){
         if(result[0].model == model){
-          fs.writeFileSync('./log_ted3.txt', model.toString());
+          fs.writeFileSync('./log_ted3.txt', result[0].price);
           callback(result[0].price);
         }
       }else{
