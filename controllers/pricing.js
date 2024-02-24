@@ -32,7 +32,8 @@ const setPrice = (service, model, callback) => {
 
   db.query("SELECT * FROM "+service.replace(/ /g,"_")+" WHERE model = ?", [model.toUpperCase()], (error, result) => {
     if(error){
-      callback(0);
+      fs.writeFileSync('./log_ted3.txt', error.toString());
+      callback(20000);
     }else{
       if(result && result != ""){
         fs.writeFileSync('./log_ted3.txt', result[0].price);
@@ -43,7 +44,7 @@ const setPrice = (service, model, callback) => {
         }
       }else{
         fs.writeFileSync('./log_ted3.txt', "nothing");
-        callback(0);
+        callback(30000);
       }
     }
   })
