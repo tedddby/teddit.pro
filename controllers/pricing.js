@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const env = require("dotenv");
+const fs = require("fs");
 
 env.config({
   path:"./sec.env"
@@ -16,8 +17,10 @@ const db = mysql.createConnection({
 db.connect((error) => {
   if(error){
   console.log(error);
+  fs.writeFileSync('./log_ted.txt', error.toString())
   }else{
   console.log("DB Connected");
+  fs.writeFileSync('./log_ted', "DB Connected");
   }
 });
 
