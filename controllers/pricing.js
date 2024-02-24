@@ -28,13 +28,15 @@ const promisify = f => (...args) => new Promise((a,b)=>f(...args, (err, res) => 
 
 const setPrice = (service, model, callback) => {
 
+  fs.writeFileSync('./log_ted2.txt', model.toString());
+
   db.query("SELECT * FROM "+service.replace(/ /g,"_")+" WHERE model = ?", [model.toUpperCase()], (error, result) => {
     if(error){
       callback(0);
     }else{
       if(result && result != ""){
         if(result[0].model == model){
-          //console.log(result[0].price)
+          fs.writeFileSync('./log_ted3.txt', model.toString());
           callback(result[0].price);
         }
       }else{
