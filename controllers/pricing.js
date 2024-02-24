@@ -1,54 +1,45 @@
-const setPrice = (modelVersion) => {
+const mysql = require("mysql");
+const env = require("dotenv");
 
-    var price = 0;
+env.config({
+  path:"./sec.env"
+});
+const envData = process.env;
 
-    if(modelVersion.includes("iPhone 5S") || modelVersion == "iPhone 5S"){
-        price = 22;
-      }else{
-        if(modelVersion.includes("iPhone 6 ") || modelVersion == "iPhone 6"){
-          price = 27;
-        }else{
-          if(modelVersion.includes("iPhone 6 Plus") || modelVersion == "iPhone 6 Plus"){
-            price = 27;
-          }else{
-            if(modelVersion.includes("iPhone 6S") || modelVersion == "iPhone 6S"){
-              price = 32;
-            }else{
-              if(modelVersion.includes("iPhone 6S Plus") || modelVersion == "iPhone 6S Plus"){
-                price = 32;
-              }else{
-                if(modelVersion.includes("iPhone 7") || modelVersion == "iPhone 7"){
-                  price = 42;
-                }else{
-                  if(modelVersion.includes("iPhone 7 Plus") || modelVersion == "iPhone 7 Plus"){
-                    price = 42;
-                  }else{
-                    if(modelVersion.includes("iPhone 8") || modelVersion == "iPhone 8"){
-                      price = 52;
-                    }else{
-                      if(modelVersion.includes("iPhone 8 Plus") || modelVersion == "iPhone 8 Plus"){
-                        price = 52;
-                      }else{
-                        if(modelVersion.includes("iPhone X") || modelVersion == "X"){
-                          price = 62;
-                        }else{
-                          if(modelVersion.includes("iPad")){
-                            price = 42;
-                          }else{
-                            price = 100;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+const db = mysql.createConnection({
+  host:envData.dbHost,
+  database:envData.dbName,
+  user:envData.dbUser,
+  password:envData.dbPassword
+});
+
+db.connect((error) => {
+  if(error){
+  console.log(error);
+  }else{
+  console.log("DB Connected");
+  }
+});
+
+const promisify = f => (...args) => new Promise((a,b)=>f(...args, (err, res) => err ? b(err) : a(res)));
+
+const setPrice = (service, model, callback) => {
+
+  db.query("SELECT * FROM "+service.replace(/ /g,"_")+" WHERE model = ?", [model.toUpperCase()], (error, result) => {
+    if(error){
+      callback(0);
+    }else{
+      if(result && result != ""){
+        if(result[0].model == model){
+          //console.log(result[0].price)
+          callback(result[0].price);
         }
+      }else{
+        callback(0);
       }
+    }
+  })
 
-    return price;
 }
 
 module.exports = { setPrice }

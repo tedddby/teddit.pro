@@ -3,7 +3,6 @@ const router = express.Router();
 const controller = require("../controllers/verification");
 const StripeController = require("../controllers/payments");
 const bodyParser = require("body-parser");
-const { response } = require("express");
 
 
 router.get("/", (req, res) => {
@@ -40,42 +39,18 @@ router.get("/*/callback", (req, res) => {
 
 router.post("/verification/serial/*", controller.VerifySerial);
 router.post("/verification/promo/*", controller.VerifyPromo);
-router.post("/fmi/modify/cookie/soldby", controller.ModifyCookieAddSoldBy);
 
 router.get("/checkout", controller.VerifyCheckout, (req, res) => {
     if(req.serial && req.service && req.price){
-        var obj;
-        if(req.service == "FMI OFF"){
-            obj = {
-                serial:req.serial,
-                service:req.service,
-                price:req.price,
-                model:req.model,
-                type:req.type
-            }
-            return res.render("fmi", obj);
-        }else{
-            if(req.iremoval){
-                obj = {
-                    serial:req.serial,
-                    service:req.service,
-                    price:req.price,
-                    model:req.model,
-                    type:req.type,
-                    iremoval:req.iremoval
-                }
-            }else{
-                obj = {
-                    serial:req.serial,
-                    service:req.service,
-                    price:req.price,
-                    model:req.model,
-                    orderID:req.orderID,
-                    type:req.type
-                }
-            }
-            return res.render("checkout", obj);
+        var obj = {
+            serial:req.serial,
+            service:req.service,
+            price:req.price,
+            model:req.model,
+            orderID:req.orderID,
+            type:req.type
         }
+        return res.render("checkout", obj);
     }else{
         return res.redirect("/");
     }
@@ -83,20 +58,22 @@ router.get("/checkout", controller.VerifyCheckout, (req, res) => {
 
 router.post("/stripe/session", StripeController.GenerateSession);
 
-router.get("/success", StripeController.PaymentSuccess, (req, res) => {
+router.get("/payment/success", StripeController.PaymentSuccess, (req, res) => {
     if(req.serial && req.service){
-        res.render("success", {
+        res.render("payment_successful", {
             serial:req.serial,
-            service:req.service
+            service:req.service,
+            model:req.model,
+            orderID:req.orderID,
+            price:req.price
         })
     }else{
         return res.redirect("/");
     }
 });
 
-
-router.get("/tedddbyActivator.rar", (req, res) => {
-    return res.download("./tedddbyActivatorV5.3.zip")
+router.get("/payment/cancelled", (req, res) => {
+    res.render("payment_cancelled");
 });
 
 

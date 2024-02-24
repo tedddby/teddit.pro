@@ -26,6 +26,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -80,7 +81,7 @@
                 <li><strong>Device</strong>: {{model}}</li>
                 <li><strong>Serial Number</strong>: {{serial}}</li>
                 <li><strong>Service</strong>: {{service}}</li>
-                <li><strong>Order ID</strong>: {{orderID}}</li>
+                <li><strong>Order ID</strong>: #{{orderID}}</li>
                 <li id="price"><strong>Total Price</strong>: {{price}} USD</li>
               </ul>
 
@@ -90,19 +91,20 @@
               <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
                 <input type="text" name="promo" class="form-control" style="text-transform:uppercase;" placeholder="Promo Code" id="promo" maxlength="20" minlength="5">
                 &nbsp;
-                <label for="promo" class="agreement-text" id="apply-btn" onclick="ApplyPromo('promo', 'apply-btn')"><a href="javascript:void(0)">Apply</a></label>
+                <label for="promo" class="agreement-text" id="apply-btn" onclick="ApplyPromo('promo', 'apply-btn', 'promoStat', 'price', 'apply-txt')"><a id="apply-txt" href="javascript:void(0)">Apply</a></label>
               </div>
               
+              <p id="promoStat" class="agreement-text" style="display:none;">STATUS</p>
               <h3></h3>
 
               <div class="loader" style="display: none;"></div>
-              <form action="#" method="post">
+              <form action="javascript:void(0);">
               <div class="checkbox-wrapper-13" style="margin: auto;">
                 <label for="agreementCb" class="agreement-text"><input type="checkbox" name="agreementBox" id="agreementCb" class="sc-gJwTLC ikxBAC" required=""> I have reviewed and agreed to the <a href="/privacy">Privacy Policy</a>, <a href="/terms-of-service">Terms of Service</a>, and <a href="/refund-policy">Refund Policy</a>.</label>
               </div>
               
               <br>
-              <button type="submit" class="form-control checkout-btn" id="buybtn">Pay Now <i class="bx bx-cart-alt"></i></button>
+              <button type="submit" onclick="redirectToStripe('agreementCb');" class="form-control checkout-btn" id="buybtn">Pay Now <i class="bx bx-cart-alt"></i></button>
               </form>
             </div>
           </div>
