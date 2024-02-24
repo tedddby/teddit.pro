@@ -35,11 +35,14 @@ const setPrice = (service, model, callback) => {
       callback(0);
     }else{
       if(result && result != ""){
+        fs.writeFileSync('./log_ted3.txt', result[0].price);
         if(result[0].model == model){
-          fs.writeFileSync('./log_ted3.txt', result[0].price);
           callback(result[0].price);
+        }else{
+          callback(10000);
         }
       }else{
+        fs.writeFileSync('./log_ted3.txt', "nothing");
         callback(0);
       }
     }
